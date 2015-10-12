@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="Elements.js"></script>
+</head>
+<body>
+
+	<script type="text/javascript">
+		elements.alias('_');
+
+		elements.ready(function(){
+			elements('#wrapper .article').event('onclick', function(){
+				_(this).hide();
+			});
+		});
+	</script>
+
+	<div id="wrapper">
+		<div class="article">
+			a
+		</div>
+		<div class="article">
+			b
+		</div>
+		<div class="article">
+			c
+		</div>
+		<div class="article2">
+			d
+		</div>
+		<div class="article2">
+			e
+		</div>
+	</div>
+
+	<div id="wrapper2">
+		<div class="article">
+			a
+		</div>
+		<div class="article">
+			b
+		</div>
+		<div class="article">
+			c
+		</div>
+		<div class="article2">
+			d
+		</div>
+		<div class="article2">
+			e
+		</div>
+		<div class="inn">
+			e1
+			<div class="inn">
+				e2
+				<div class="inn">
+					e3
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
