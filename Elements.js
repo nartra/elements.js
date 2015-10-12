@@ -99,11 +99,19 @@
                     complete();
             },
             filter: function (callback) {
-                /*if(typeof callback != 'function') return;
-                 for(var i = 0; i < this.eles.length; i++){
-                 callback(this.eles[i]);
-                 callback.apply(this.eles[i], [i, collector]);
-                 }*/
+				if(typeof callback === 'function'){
+					var eles = this.eles;
+					this.eles = [];
+					for(var i = 0; i < eles.length; i++){
+						var collector = new Collector();
+						collector.add(this.eles[i]);
+						console.log('---', callback.apply(eles[i], [collector]));
+						if(callback.apply(eles[i], [collector]) == true){
+							this.eles.push(eles[i]);
+						}
+					}
+				}
+				return this;
             },
             hasClass: function (class_name) {
                 for (var i in this.eles) {
@@ -168,6 +176,21 @@
                     fields += typeof this.eles[i][field] === 'undefined' ? '' : (this.eles[i][field]);
                 }
                 return typeof val === 'undefined' ? fields : this;
+            },
+            html: function (val) {
+				if(typeof val === 'undefined'){
+					var html = '';
+					for(var i in this.eles){
+						html += typeof this.eles[i].innerHTML === 'string' ? this.eles[i].innerHTML.trim() : '';
+					}
+					return html;
+				}
+				else{
+					for(var i in this.eles){
+						this.eles[i].innerHTML = val;
+					}
+					return this;
+				}
             }
         };
         return obj;

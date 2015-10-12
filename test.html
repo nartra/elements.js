@@ -13,6 +13,15 @@
 				_(this).hide();
 			});
 		});
+		
+		var x = elements('#wrapper .article').filter(function(a){
+		  console.log('[' + elements(this).html() + ']');
+		  return elements(this).html() != 'a';
+		})
+
+		x.each(function(a,b){
+			console.log(a,b,elements(this).html() );
+		})
 	</script>
 
 	<div id="wrapper">
